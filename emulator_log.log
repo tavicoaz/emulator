@@ -1,0 +1,44 @@
+2024-09-24 13:59:20,385 INFO:Starting script...
+2024-09-24 13:59:20,386 INFO:Loading data...
+2024-09-24 13:59:20,435 INFO:Loaded FSDS_timeseriesERA.txt with daily resampled shape (1, 2) and sample Datetime: 
+0   2024-09-24
+Name: Datetime, dtype: datetime64[ns]
+2024-09-24 13:59:20,459 INFO:Loaded TBOT_timeseriesERA.txt with daily resampled shape (1, 2) and sample Datetime: 
+0   2024-09-24
+Name: Datetime, dtype: datetime64[ns]
+2024-09-24 13:59:20,470 INFO:Loaded QBOT_timeseriesERA.txt with daily resampled shape (1, 2) and sample Datetime: 
+0   2024-09-24
+Name: Datetime, dtype: datetime64[ns]
+2024-09-24 13:59:20,508 INFO:Loaded WIND_timeseriesERA.txt with daily resampled shape (1, 2) and sample Datetime: 
+0   2024-09-24
+Name: Datetime, dtype: datetime64[ns]
+2024-09-24 13:59:20,519 INFO:Loaded PSRF_timeseriesERA.txt with daily resampled shape (1, 2) and sample Datetime: 
+0   2024-09-24
+Name: Datetime, dtype: datetime64[ns]
+2024-09-24 13:59:20,546 INFO:Loaded PRECTmms_timeseriesERA.txt with daily resampled shape (1, 2) and sample Datetime: 
+0   2024-09-24
+Name: Datetime, dtype: datetime64[ns]
+2024-09-24 13:59:20,552 INFO:Loaded LEAFC_timeseries.txt with shape (365, 2)
+2024-09-24 13:59:20,553 INFO:Memory Usage: RSS = 0.12 GB
+2024-09-24 13:59:20,553 INFO:Preparing data...
+2024-09-24 13:59:20,556 INFO:Merged TBOT_timeseriesERA.txt into forcing_df, current shape: (1, 3)
+2024-09-24 13:59:20,559 INFO:Merged QBOT_timeseriesERA.txt into forcing_df, current shape: (1, 4)
+2024-09-24 13:59:20,561 INFO:Merged WIND_timeseriesERA.txt into forcing_df, current shape: (1, 5)
+2024-09-24 13:59:20,563 INFO:Merged PSRF_timeseriesERA.txt into forcing_df, current shape: (1, 6)
+2024-09-24 13:59:20,564 INFO:Merged PRECTmms_timeseriesERA.txt into forcing_df, current shape: (1, 7)
+2024-09-24 13:59:20,567 INFO:Reduced forcing data to daily values, shape: (1, 7)
+2024-09-24 13:59:20,569 INFO:Combined forcing and state data, final shape: (365, 8)
+2024-09-24 13:59:20,572 ERROR:Error occurred: You are trying to merge on datetime64[ns] and object columns. If you wish to proceed you should use pd.concat
+Traceback (most recent call last):
+  File "/work/cmcc/lg07622/work/emulator/RF_initial_single.py", line 147, in <module>
+    final_df = prepare_data(forcing_data, state_data)
+  File "/work/cmcc/lg07622/work/emulator/RF_initial_single.py", line 85, in prepare_data
+    final_df = pd.merge(combined_df, prev_state_df, on='Previous_Date', how='inner')
+  File "/juno/opt/anaconda/3-2022.10/lib/python3.9/site-packages/pandas/core/reshape/merge.py", line 107, in merge
+    op = _MergeOperation(
+  File "/juno/opt/anaconda/3-2022.10/lib/python3.9/site-packages/pandas/core/reshape/merge.py", line 704, in __init__
+    self._maybe_coerce_merge_keys()
+  File "/juno/opt/anaconda/3-2022.10/lib/python3.9/site-packages/pandas/core/reshape/merge.py", line 1265, in _maybe_coerce_merge_keys
+    raise ValueError(msg)
+ValueError: You are trying to merge on datetime64[ns] and object columns. If you wish to proceed you should use pd.concat
+2024-09-24 13:59:20,595 INFO:Script completed.
